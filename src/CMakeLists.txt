@@ -52,6 +52,7 @@ set(kraft_SRCS
     positionviewwidget.cpp
     documentsaverbase.cpp
     documentsaverdb.cpp
+    documentsaverxml.cpp
     documentman.cpp
     docdigest.cpp
     alldocsview.cpp
