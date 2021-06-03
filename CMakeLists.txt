@@ -27,6 +27,7 @@ find_package(Qt5 CONFIG REQUIRED
     Sql
     Widgets
     Xml
+    XmlPatterns
 )
 
 # XmlGui for the ConfigSkeleton

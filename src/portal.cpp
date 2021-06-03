@@ -66,6 +66,7 @@
 #include "setupassistant.h"
 #include "addressprovider.h"
 #include "alldocsview.h"
+#include "dbtoxmlconverter.h"
 
 
 Portal::Portal(QWidget *parent, QCommandLineParser *commandLineParser, const char* name)
@@ -173,6 +174,12 @@ void Portal::initActions()
     _actReconfDb->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_R ));
     connect(_actReconfDb, &QAction::triggered, this, &Portal::slotReconfigureDatabase);
 
+    newIcon = QIcon::fromTheme( "settings-configure");
+    _actXmlConvert = new QAction(newIcon, i18n("Convert documents to XML"), this);
+    _actXmlConvert->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_M ));
+    connect(_actXmlConvert, &QAction::triggered, this, &Portal::slotConvertToXML);
+
+
     newIcon = QIcon::fromTheme( "help-about");
     _actHandbook = new QAction(newIcon, i18n("Kraft Handbook..."), this);
     _actHandbook->setShortcut( QKeySequence( Qt::CTRL + Qt::Key_H ));
@@ -243,6 +250,7 @@ void Portal::initActions()
         QMenu *prefsMenu = menuBar()->addMenu(i18n("&Preferences"));
         prefsMenu->addAction(_actEditTemplates);
         prefsMenu->addAction(_actReconfDb);
+        prefsMenu->addAction(_actXmlConvert);
         prefsMenu->addSeparator();
         QMenu *submen = prefsMenu->addMenu(i18n("Toolbars"));
         submen->addAction(toolBar->toggleViewAction());
@@ -855,6 +863,13 @@ void Portal::slotReconfigureDatabase()
     assi.exec();
   }
 }
+
+void Portal::slotConvertToXML()
+{
+    DbToXMLConverter converter;
+    converter.convertDocs(2019);
+}
+
 
 void Portal::createView( DocGuardedPtr doc )
 {

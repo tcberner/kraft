@@ -156,6 +156,7 @@ set(KRAFT_LINK_LIBS
     Qt5::Widgets
     Qt5::Sql
     Qt5::Xml
+    Qt5::XmlPatterns
     
     KF5::I18n
     KF5::Contacts
