@@ -20,7 +20,7 @@ void createTestFile( const QString& testFile, const QString& content = QString()
     QVERIFY (file.open(QIODevice::WriteOnly));
     {
         QTextStream stream(&file);
-        stream << c << Qt::endl;
+        stream << c << endl;
     }
 }
 
@@ -146,7 +146,7 @@ private slots:
             const QString noExistFile2 = DefaultProvider::self()->locateFile("nomydir/kraftfile");
             QVERIFY(noExistFile2.isEmpty());
 
-            QVERIFY(td.rmdir(mydir));
+            QVERIFY(td.removeRecursively());
 
         } else {
             qDebug() << "Skipped relative path test, directory share exists.";
